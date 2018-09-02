@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+    {% if notfound %}
+        {{ notfound }}
+    {% else %}
+        {% if crypto.Response %}
+            Sorry, {{ quote }} Is Not A Valid Search Option.
+Valid Search Options: [BTC, ETH, XRP, BCH, EOS, XLM, LTC, ADA, USDT, MIOTA, TRX]
+        {% endif %}
+        {% for key, value in crypto.DISPLAY.items %}
+            <div class="jumbotron">
+                <h3 class="display-4">{{ key }}</h3>
+                <strong>Price</strong>: {{ value.USD.PRICE }}<br/>
+                <strong>Day High</strong>: {{ value.USD.HIGHDAY }}<br/>
+                <strong>Day Low</strong>: {{ value.USD.LOWDAY }}<br/>
+                <strong>Market Cap</strong>: {{ value.USD.MKTCAP }}<br/>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}
